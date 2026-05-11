@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pendaftaran Siswa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #003d82 0%, #002d5f 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            overflow: visible;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #003d82 0%, #002d5f 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 1em;
+            opacity: 0.95;
+            letter-spacing: 0.5px;
+        }
+
+        .form-content {
+            padding: 40px 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #003d82;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #ff9800;
+            box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.1);
+        }
+
+        .date-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .date-group .form-group {
+            margin-bottom: 0;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .required {
+            color: #ff6b6b;
+        }
+
+        .form-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        button {
+            padding: 13px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 152, 0, 0.4);
+        }
+
+        .btn-reset {
+            background: #f0f0f0;
+            color: #003d82;
+            border: 2px solid #003d82;
+        }
+
+        .btn-reset:hover {
+            background: #003d82;
+            color: white;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .error-message {
+            display: none;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .form-content {
+                padding: 25px 20px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .date-group {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 Pendaftaran Siswa Baru</h1>
+            <p>Silahkan isi formulir berikut dengan data diri Anda</p>
+        </div>
+
+        <div class="form-content">
+            <div class="success-message" id="successMessage">
+                ✓ Data berhasil dikirim!
+            </div>
+            <div class="error-message" id="errorMessage">
+                ✗ Mohon isi semua data dengan benar!
+            </div>
+
+            <form id="formPendaftaran">
+                <!-- Nama Lengkap -->
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap <span class="required">*</span></label>
+                    <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap Anda" required>
+                </div>
+
+                <!-- NISN -->
+                <div class="form-group">
+                    <label for="nisn">NISN <span class="required">*</span></label>
+                    <input type="text" id="nisn" name="nisn" placeholder="Masukkan NISN (10 digit)" maxlength="10" required>
+                </div>
+
+                <!-- Tempat dan Tanggal Lahir -->
+                <div class="form-group">
+                    <label>Tempat dan Tanggal Lahir <span class="required">*</span></label>
+                    <div class="date-group">
+                        <div class="form-group">
+                            <input type="text" id="tempatLahir" name="tempatLahir" placeholder="Tempat lahir" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" id="tanggalLahir" name="tanggalLahir" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jurusan -->
+                <div class="form-group">
+                    <label for="jurusan">Jurusan SMK <span class="required">*</span></label>
+                    <select id="jurusan" name="jurusan" required>
+                        <option value="">-- Pilih Jurusan SMK --</option>
+                        <option value="TKJ">Teknik Komputer dan Jaringan (TKJ)</option>
+                        <option value="RPL">Rekayasa Perangkat Lunak (RPL)</option>
+                        <option value="TBSM">Teknik dan Bisnis Sepeda Motor (TBSM)</option>
+                        <option value="TAV">Teknik Audio Video (TAV)</option>
+                        <option value="TPTU">Teknik Pendingin dan Tata Udara (TPTU)</option>
+                        <option value="TEISL">Teknik Elektronika Industri dan Sistem Listrik (TEISL)</option>
+                        <option value="AKUNTANSI">Akuntansi</option>
+                        <option value="PEMASARAN">Pemasaran</option>
+                        <option value="PERKANTORAN">Administrasi Perkantoran</option>
+                        <option value="KEPERAWATAN">Keperawatan</option>
+                        <option value="FARMASI">Farmasi</option>
+                    </select>
+                </div>
+
+                <!-- Asal Sekolah -->
+                <div class="form-group">
+                    <label for="asalSekolah">Asal Sekolah <span class="required">*</span></label>
+                    <input type="text" id="asalSekolah" name="asalSekolah" placeholder="Masukkan nama sekolah asal Anda" required>
+                </div>
+
+                <!-- Tombol Aksi -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Daftar</button>
+                    <button type="reset" class="btn-reset">Bersihkan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('formPendaftaran');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validasi NISN
+            const nisn = document.getElementById('nisn').value;
+            if (nisn.length !== 10 || isNaN(nisn)) {
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+                return;
+            }
+
+            // Tampilkan pesan sukses
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+
+            // Data formulir
+            const formData = {
+                nama: document.getElementById('nama').value,
+                nisn: document.getElementById('nisn').value,
+                tempatLahir: document.getElementById('tempatLahir').value,
+                tanggalLahir: document.getElementById('tanggalLahir').value,
+                jurusan: document.getElementById('jurusan').value,
+                asalSekolah: document.getElementById('asalSekolah').value
+            };
+
+            console.log('Data Pendaftaran:', formData);
+
+            // Reset form setelah 2 detik
+            setTimeout(() => {
+                form.reset();
+                successMessage.style.display = 'none';
+            }, 2000);
+        });
+
+        // Validasi NISN saat input
+        document.getElementById('nisn').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    </script>
+</body>
+</html>
