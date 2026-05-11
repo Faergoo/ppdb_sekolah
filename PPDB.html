@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPDB SMK 4 PALEMBANG | Pendaftaran Peserta Didik Baru</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #003d82;
+            --secondary: #ff8c00;
+            --accent: #0066cc;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --border-radius: 8px;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+        }
+
+        /* Header & Navbar */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #001f3f 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        .btn-daftar {
+            padding: 0.6rem 1.5rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-daftar:hover {
+            background: #e67e00;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+      
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #001f3f 50%, var(--secondary) 100%);
+            color: white;
+            padding: 80px 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="1200" height="600" fill="%23003d82"/><rect width="1200" height="600" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: slideInUp 0.8s ease;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease 0.5s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #e67e00;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            padding: 0.6rem 1.5rem;
+            background: white;
+            color: var(--primary);
+            border: 2px solid white;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+      
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+       
+        section {
+            padding: 60px 1rem;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Jadwal Section */
+        .jadwal-section {
+            background: linear-gradient(135deg, var(--light) 0%, #f0f8ff 100%);
+        }
+
+        .jadwal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .jadwal-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .jadwal-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .jadwal-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .jadwal-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .jadwal-label {
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .jadwal-date {
+            color: var(--dark);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Jurusan Section */
+        .jurusan-section {
+            background: white;
+        }
+
+        .jurusan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .jurusan-card {
+            background: linear-gradient(135deg, var(--light) 0%, white 100%);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .jurusan-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--secondary);
+            background: linear-gradient(135deg, #fef5e7 0%, white 100%);
+        }
+
+        .jurusan-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .jurusan-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .jurusan-card p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .capacity {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Persyaratan Section */
+        .persyaratan-section {
+            background: linear-gradient(135deg, var(--light) 0%, #f0f8ff 100%);
+        }
+
+        .persyaratan-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .persyaratan-list {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .persyaratan-list h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .persyaratan-list ul {
+            list-style: none;
+        }
+
+        .persyaratan-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .persyaratan-list li:last-child {
+            border-bottom: none;
+        }
+
+        .persyaratan-list i {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-top: 0.3rem;
+        }
+
+        .persyaratan-image {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .persyaratan-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+        }
+
+        /* Statistik Section */
+        .statistik-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+        }
+
+        .statistik-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Faqs Section */
+        .faqs-section {
+            background: white;
+        }
+
+        .faqs-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: var(--primary);
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--light);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-answer p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--secondary) 0%, var(--primary) 100%);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 0;
+            margin-right: auto;
+            width: 45%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            margin-right: 0;
+            width: 45%;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 1.5rem;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 15px;
+            background: white;
+            border: 3px solid var(--secondary);
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .timeline-content h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--light) 0%, #f0f8ff 100%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: #666;
+        }
+
+        .contact-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 5px rgba(0, 61, 130, 0.2);
+        }
+
+        .contact-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #bbb;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                width: 100%;
+                z-index: 999;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .persyaratan-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .timeline::before {
+                left: 15px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                width: 100%;
+                margin-left: 50px;
+                text-align: left;
+            }
+
+            .timeline-item::before {
+                left: 10px;
+            }
+
+            .timeline-content {
+                border-left: 3px solid var(--secondary);
+                border-right: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .hero {
+                padding: 50px 1rem;
+            }
+
+            section {
+                padding: 40px 1rem;
+            }
+        }
+
+        /* Loading Animation */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scroll To Top */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: none;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            z-index: 500;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .scroll-to-top.show {
+            display: flex;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            max-width: 500px;
+            width: 90%;
+            box-shadow: var(--shadow-lg);
+            animation: slideInUp 0.3s ease;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 1rem;
+        }
+
+        .modal-header h2 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--primary);
+        }
+
+        /* Success Message */
+        .alert {
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .alert.show {
+            display: block;
+            animation: slideInDown 0.3s ease;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="navbar-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <div>SMK 4 PALEMBANG</div>
+                    <small style="font-size: 0.75rem; opacity: 0.9;">PPDB 2026</small>
+                </div>
+            </div>
+            <nav id="navbar">
+                <a href="#home">Beranda</a>
+                <a href="#jadwal">Jadwal</a>
+                <a href="#jurusan">Jurusan</a>
+                <a href="#persyaratan">Persyaratan</a>
+                <a href="#faqs">FAQ</a>
+                <a href="#kontak">Kontak</a>
+                <a href="#" class="btn btn-secondary" onclick="openLoginModal()">Masuk</a>
+                <a href="#" class="btn-daftar" onclick="openDaftarModal()">Daftar</a>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 data-aos="fade-up">Pendaftaran Peserta Didik Baru</h1>
+            <p data-aos="fade-up" data-aos-delay="200">Bergabunglah dengan ribuan siswa yang telah memilih SMK 4 Palembang sebagai tempat menimba ilmu dan mengembangkan skill profesional</p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
+                <a href="#jadwal" class="btn btn-primary">Lihat Jadwal</a>
+                <a href="#jurusan" class="btn btn-secondary">Jelajahi Jurusan</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Cards -->
+    <section class="container" data-aos="fade-up">
+        <div class="info-cards">
+            <div class="card" data-aos="flip-left">
+                <div class="card-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Ratusan Siswa</h3>
+                <p>Diterima setiap tahun dari berbagai daerah di Indonesia</p>
+            </div>
+            <div class="card" data-aos="flip-left" data-aos-delay="100">
+                <div class="card-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Program Berkualitas</h3>
+                <p>Kurikulum nasional dengan standar industri yang relevan</p>
+            </div>
+            <div class="card" data-aos="flip-left" data-aos-delay="200">
+                <div class="card-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Lapangan Kerja</h3>
+                <p>Partnership dengan industri besar untuk placement kerja lulusan</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jadwal Section -->
+    <section class="jadwal-section" id="jadwal">
+        <div class="container" data-aos="fade-up">
+            <h2>Jadwal PPDB 2026</h2>
+            <p class="section-subtitle">Berikut adalah jadwal lengkap penerimaan peserta didik baru</p>
+            <div class="jadwal-grid">
+                <div class="jadwal-card" data-aos="flip-up">
+                    <h4><i class="fas fa-calendar-check"></i> Pendaftaran Online</h4>
+                    <div class="jadwal-item">
+                        <div class="jadwal-label">Pembukaan Pendaftaran</div>
+                        <div class="jadwal-date">01 Mei 2026</div>
+                    </div>
+                    <div class="jadwal-item">
+                        <div class="jadwal-label">Penutupan Pendaftaran</div>
+                        <div class="jadwal-date">30 Juni 2026</div>
+                    </div>
+                </div>
+                <div class="jadwal-card" data-aos="flip-up" data-aos-delay="100">
+                    <h4><i class="fas fa-flask-vial"></i> Seleksi  & Verifikasi</h4>
+                    <div class="jadwal-item">
+                        <div class="jadwal-label">Jadwal Seleksi</div>
+                        <div class="jadwal-date">01 - 15 Juli 2026</div>
+                    </div>
+                    <div class="jadwal-item">
+                        <div class="jadwal-label">Pengumuman I</div>
+                        <div class="jadwal-date">20 Juli 2026</div>
+                    </div>
+                </div>
+                <div class="jadwal-card" data-aos="flip-up" data-aos-delay="200">
+                    <h4><i class="fas fa-check-circle"></i> Penetapan & Daftar Ulang</h4>
+                    <div class="jadwal-item">
+                        <div class="jadwal-label">Daftar Ulang Gelombang 1</div>
+                        <div class="jadwal-date">21 - 25 Juli 2026</div>
+                    </div>
+                    <div class="jadwal-item">
+                        <div class="jadwal-label">Daftar Ulang Gelombang 2</div>
+                        <div class="jadwal-date">26 - 30 Juli 2026</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jurusan Section -->
+    <section class="jurusan-section" id="jurusan">
+        <div class="container" data-aos="fade-up">
+            <h2>Program Keahlian</h2>
+            <p class="section-subtitle">Pilih jurusan sesuai dengan minat dan bakat Anda</p>
+            <div class="jurusan-grid">
+                <div class="jurusan-card" data-aos="zoom-in">
+                    <div class="jurusan-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Teknik Permesinan</h3>
+                    <p>Belajar merancang, memproduksi, dan merawat mesin industri modern dengan teknologi terkini</p>
+                    <span class="capacity">Kuota: 80 Siswa</span>
+                </div>
+                <div class="jurusan-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="jurusan-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Teknik Instalasi Tenaga Listrik</h3>
+                    <p>Kuasai keterampilan elektronika digital dan analog untuk industri e-commerce dan manufaktur</p>
+                    <span class="capacity">Kuota: 70 Siswa</span>
+                </div>
+                <div class="jurusan-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="jurusan-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Teknik Komputer dan Jaringan</h3>
+                    <p>Kembangkan keahlian dalam jaringan komputer, programming, dan sistem informasi</p>
+                    <span class="capacity">Kuota: 100 Siswa</span>
+                </div>
+                <div class="jurusan-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="jurusan-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Desain Permodelan dan Informasi Bangunan</h3>
+                    <p>Pelajari teknik bangunan, konstruksi, dan manajemen proyek dengan standar internasional</p>
+                    <span class="capacity">Kuota: 60 Siswa</span>
+                </div>
+                <div class="jurusan-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="jurusan-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Teknik Otomotif</h3>
+                    <p>Kuasai teknologi otomotif modern dan perbaikan kendaraan dengan peralatan canggih</p>
+                    <span class="capacity">Kuota: 75 Siswa</span>
+                </div>
+                <div class="jurusan-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="jurusan-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Rekayasa Perangkat Lunak</h3>
+                    <p>Kuasai keterampilan programming, web development, dan mobile apps dengan teknologi terkini</p>
+                    <span class="capacity">Kuota: 85 Siswa</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Persyaratan Section -->
+    <section class="persyaratan-section" id="persyaratan">
+        <div class="container" data-aos="fade-up">
+            <h2>Persyaratan Pendaftaran</h2>
+            <p class="section-subtitle">Lengkapi semua persyaratan untuk proses pendaftaran yang lancar</p>
+            <div class="persyaratan-content">
+                <div class="persyaratan-list" data-aos="flip-left">
+                    <h3>Persyaratan Umum</h3>
+                    <ul>
+                        <li><i class="fas fa-check-square"></i> <span>Lulusan SMP/MTs atau sederajat</span></li>
+                        <li><i class="fas fa-check-square"></i> <span>Ijazah atau Surat Keterangan Lulus (SKL)</span></li>
+                        <li><i class="fas fa-check-square"></i> <span>Akta Kelahiran Asli</span></li>
+                        <li><i class="fas fa-check-square"></i> <span>KTP/Kartu Identitas Asli</span></li>
+                        <li><i class="fas fa-check-square"></i> <span>Kartu Keluarga (KK) Asli</span></li>
+                        <li><i class="fas fa-check-square"></i> <span>Pas Foto Berwarna 3x4 (4 lembar) atau Digital</span></li>
+                        <li><i class="fas fa-check-square"></i> <span>Raport 3 tahun terakhir</span></li>
+                        <li><i class="fas fa-check-square"></i> <span>Sertifikat Prestasi (jika ada)</span></li>
+                        <li><i class="fas fa-check-square"></i> <span>Formulir Pendaftaran Terisi Lengkap</span></li>
+                        <li><i class="fas fa-check-square"></i> <span>E-mail aktif dan nomor handphone yang terhubung</span></li>
+                    </ul>
+                </div>
+                <div class="persyaratan-image" data-aos="flip-right">
+                    <div style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); padding: 3rem; border-radius: var(--border-radius); text-align: center; color: white; min-height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <i class="fas fa-file-upload" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                        <h4 style="margin-bottom: 1rem;">Dokumen Mudah Diupload</h4>
+                        <p>Semua dokumen dapat diupload dalam format digital melalui portal PPDB online</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistik Section -->
+    <section class="statistik-section" data-aos="fade-up">
+        <div class="container">
+            <h2 style="color: white; margin-bottom: 3rem;">Statistik SMK 4 Palembang</h2>
+            <div class="statistik-grid">
+                <div class="stat-card" data-aos="counter">
+                    <div class="stat-number" data-target="2500">0</div>
+                    <div class="stat-label">Siswa Aktif</div>
+                </div>
+                <div class="stat-card" data-aos="counter" data-aos-delay="100">
+                    <div class="stat-number" data-target="150">0</div>
+                    <div class="stat-label">Guru & Staf</div>
+                </div>
+                <div class="stat-card" data-aos="counter" data-aos-delay="200">
+                    <div class="stat-number" data-target="98">0</div>
+                    <div class="stat-label">% Kelulusan</div>
+                </div>
+                <div class="stat-card" data-aos="counter" data-aos-delay="300">
+                    <div class="stat-number" data-target="95">0</div>
+                    <div class="stat-label">% Terserap Kerja</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Alur Pendaftaran -->
+    <section class="container" data-aos="fade-up">
+        <h2>Alur Pendaftaran Online</h2>
+        <p class="section-subtitle">Ikuti langkah-langkah mudah ini untuk mendaftar</p>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h4><i class="fas fa-user-plus"></i> 1. Buat Akun</h4>
+                    <p>Daftar akun baru atau login dengan akun yang sudah ada</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <h4><i class="fas fa-form"></i> 2. Isi Formulir</h4>
+                    <p>Lengkapi data diri dan pilih jurusan yang diinginkan</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h4><i class="fas fa-upload"></i> 3. Upload Dokumen</h4>
+                    <p>Unggah semua dokumen persyaratan yang diperlukan</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-content">
+                    <h4><i class="fas fa-square-check"></i> 4. Verifikasi</h4>
+                    <p>Tim kami akan memverifikasi dokumen yang Anda upload</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-content">
+                    <h4><i class="fas fa-star"></i> 5. Hasil Seleksi</h4>
+                    <p>Cek hasil seleksi melalui portal dan email Anda</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="faqs-section" id="faqs">
+        <div class="container" data-aos="fade-up">
+            <h2>Pertanyaan Umum (FAQ)</h2>
+            <p class="section-subtitle">Temukan jawaban atas pertanyaan yang sering diajukan</p>
+            <div class="faqs-container">
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Bagaimana cara mendaftar di SMK 4 Palembang?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Anda dapat mendaftar melalui portal PPDB online kami. Klik tombol "Daftar" di halaman utama, buat akun baru, isi data diri Anda, pilih jurusan, dan upload dokumen persyaratan. Setelah semua selesai, klik tombol "Kirim" untuk menyelesaikan pendaftaran.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Apa saja jurusan yang tersedia di SMK 4?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>SMK 4 Palembang menawarkan 6 program keahlian: Teknik Mesin, Teknik Instalasi Tenaga Listrik, Teknik Komputer dan Jaringan, Desain Permodelan Instruksi Bangunan, Teknik Otomotif, dan Rekayasa Perangkat Lunak. Silakan lihat bagian "Program Keahlian" untuk informasi detail tentang setiap jurusan.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Berapa biaya pendaftaran di SMK 4?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pendaftaran PPDB di SMK 4 Palembang gratis (tidak ada biaya pendaftaran). Biaya administrasi siswa baru akan dijelaskan lebih detail saat daftar ulang.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Apa persyaratan minimal untuk mendaftar?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Persyaratan minimal adalah lulusan SMP/MTs atau sederajat. Anda memerlukan ijazah, akta kelahiran, KTP, kartu keluarga, pas foto, raport, dan dokumen pendukung lainnya. Semua persyaratan tersebut dijelaskan di bagian "Persyaratan Pendaftaran".</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Kapan pengumuman hasil seleksi?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pengumuman hasil seleksi gelombang pertama diumumkan pada tanggal 20 Juli 2026. Anda dapat mengecek hasil seleksi melalui portal PPDB dan email yang terdaftar. Jika ada seleksi gelombang berikutnya, jadwalnya akan diumumkan kemudian.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Apakah ada beasiswa untuk siswa berprestasi?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ya, SMK 4 Palembang menyediakan beasiswa untuk siswa berprestasi akademik, siswa kurang mampu, dan atlet berprestasi. Detail tentang program beasiswa dapat dikonsultasikan langsung dengan pihak sekolah setelah daftar ulang.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="600">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Apa saja fasilitas yang tersedia di sekolah?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>SMK 4 Palembang memiliki fasilitas lengkap termasuk laboratorium modern, workshop berstandar industri, perpustakaan, ruang komputer, lapangan olahraga, asrama siswa, kantin, dan mushola. Semua fasilitas dirancang untuk mendukung proses pembelajaran yang berkualitas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="kontak">
+        <div class="container" data-aos="fade-up">
+            <h2>Hubungi Kami</h2>
+            <p class="section-subtitle">Kami siap membantu Anda 24/7</p>
+            <div class="contact-grid">
+                <div class="contact-card" data-aos="zoom-in">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Telepon</h3>
+                    <p><a href="tel:+6283192310816">(+62) 831-9231-0816</a></p>
+                </div>
+                <div class="contact-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:ppdb@smk4plg.sch.id">ppdb@smk4plg.sch.id</a></p>
+                    <p><a href="mailto:info@smk4plg.sch.id">info@smk4plg.sch.id</a></p>
+                </div>
+                <div class="contact-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Lokasi</h3>
+                    <p>Jl. Pipa Reja Kec. Kemuning</p>
+                    <p>Palembang, Indonesia</p>
+                </div>
+            </div>
+
+            <div class="contact-form-container" data-aos="fade-up" data-aos-delay="300">
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Kirim Pesan Kami</h3>
+                <form onsubmit="handleContactForm(event)">
+                    <div id="alertMessage"></div>
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Nomor Telepon</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subjek</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Pesan</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Daftar -->
+    <div id="daftarModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Daftar PPDB</h2>
+                <button class="close-btn" onclick="closeDaftarModal()">&times;</button>
+            </div>
+            <div id="daftarAlertMessage"></div>
+            <form onsubmit="handleDaftarForm(event)">
+                <div class="form-group">
+                    <label for="fullName">Nama Lengkap</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email2">Email</label>
+                    <input type="email" id="email2" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone2">Nomor Telepon</label>
+                    <input type="tel" id="phone2" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="jurusan">Pilih Jurusan</label>
+                    <select id="jurusan" name="jurusan" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: var(--border-radius);">
+                        <option value="">-- Pilih Jurusan --</option>
+                        <option value="teknik-mesin">Teknik Mesin</option>
+                        <option value="teknik-elektronika">Teknik Instalasi Tenaga Listrik</option>
+                        <option value="teknik-informatika">Teknik Komputer dan Jaringan</option>
+                        <option value="teknik-konstruksi">Desain Permodelan dan Informasi Bangunan</option>
+                        <option value="teknik-otomotif">Teknik Otomotif</option>
+                        <option value="rekayasa-perangkat-lunak">Rekayasa Perangkat Lunak</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Lanjut Pendaftaran</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login Akun Siswa</h2>
+                <button class="close-btn" onclick="closeLoginModal()">&times;</button>
+            </div>
+            <div id="loginAlertMessage"></div>
+            <form onsubmit="handleLoginForm(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" name="loginEmail" placeholder="rifqi@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="loginPassword" placeholder="Masukkan password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Masuk</button>
+            </form>
+            <p style="margin-top: 1rem; color: var(--muted);">Contoh akun: rifqi@example.com / rifqi123</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SMK 4 PALEMBANG</h4>
+                    <p>Menyiapkan generasi muda yang kompeten, terampil, dan siap bersaing di era digital.</p>
+                    <div class="social-links">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Menu Cepat</h4>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#jadwal">Jadwal PPDB</a></li>
+                        <li><a href="#jurusan">Program Keahlian</a></li>
+                        <li><a href="#persyaratan">Persyaratan</a></li>
+                        <li><a href="#faqs">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Informasi</h4>
+                    <ul>
+                        <li><a href="#kontak">Hubungi Kami</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Beasiswa</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SMK 4 Palembang. All rights reserved. | Made with <i class="fas fa-heart" style="color: var(--secondary);"></i> by Panitia PPDB</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTopBtn" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- AOS Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true
+        });
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navbar = document.getElementById('navbar');
+
+        hamburger.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('active');
+            });
+        });
+
+        // Scroll to Top
+        window.addEventListener('scroll', () => {
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Toggle FAQ
+        function toggleFAQ(element) {
+            element.parentElement.classList.toggle('active');
+        }
+
+        // Modal Functions
+        function openDaftarModal() {
+            document.getElementById('daftarModal').classList.add('show');
+        }
+
+        function closeDaftarModal() {
+            document.getElementById('daftarModal').classList.remove('show');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('show');
+        }
+
+        window.onclick = function(event) {
+            const daftarModal = document.getElementById('daftarModal');
+            const loginModal = document.getElementById('loginModal');
+            if (event.target == daftarModal) {
+                daftarModal.classList.remove('show');
+            }
+            if (event.target == loginModal) {
+                loginModal.classList.remove('show');
+            }
+        }
+
+        // Form Handler
+        function handleContactForm(event) {
+            event.preventDefault();
+            const alertDiv = document.getElementById('alertMessage');
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            // Simulate form submission
+            alertDiv.innerHTML = '<div class="alert alert-success show"><strong>Sukses!</strong> Pesan Anda telah dikirim. Tim kami akan segera menghubungi Anda.</div>';
+            event.target.reset();
+
+            setTimeout(() => {
+                alertDiv.innerHTML = '';
+            }, 5000);
+        }
+
+        function handleDaftarForm(event) {
+            event.preventDefault();
+            const alertDiv = document.getElementById('daftarAlertMessage');
+            
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email2').value,
+                phone: document.getElementById('phone2').value,
+                jurusan: document.getElementById('jurusan').value
+            };
+
+            alertDiv.innerHTML = '<div class="alert alert-success show"><strong>Pendaftaran Berhasil!</strong> Data Anda telah disimpan. Silakan lanjutkan ke tahap verifikasi dokumen.</div>';
+            
+            setTimeout(() => {
+                closeDaftarModal();
+                alertDiv.innerHTML = '';
+            }, 2000);
+        }
+
+        const ppdbAccounts = [
+            { name: 'Rifqi', email: 'rifqi@example.com', password: 'rifqi123', photo: 'rifqi.jpg', major: 'Rekayasa Perangkat Lunak', class: 'Kelas XI', status: 'Terverifikasi', stream: 'IPA' },
+            { name: 'Farel', email: 'farel@example.com', password: 'farel123', photo: 'farel.jpeg', major: 'Rekayasa Perangkat Lunak', class: 'Kelas XI', status: 'Terverifikasi', stream: 'IPA' },
+            { name: 'Ilya', email: 'ilya@example.com', password: 'ilya123', photo: 'Ilya.jpeg', major: 'Teknik Komputer dan Jaringan', class: 'Kelas XI', status: 'Terverifikasi', stream: 'IPA' }
+        ];
+
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('show');
+        }
+
+        function handleLoginForm(event) {
+            event.preventDefault();
+            const alertDiv = document.getElementById('loginAlertMessage');
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            const password = document.getElementById('loginPassword').value.trim();
+            const account = ppdbAccounts.find(user => user.email === email && user.password === password);
+
+            if (!account) {
+                alertDiv.innerHTML = '<div class="alert alert-error show"><strong>Gagal!</strong> Email atau password tidak sesuai.</div>';
+                return;
+            }
+
+            localStorage.setItem('ppdbUser', JSON.stringify(account));
+            alertDiv.innerHTML = '<div class="alert alert-success show"><strong>Berhasil!</strong> Mengalihkan ke dashboard...</div>';
+
+            setTimeout(() => {
+                window.location.href = 'dashboard-siswa.html';
+            }, 1200);
+        }
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('[data-target]');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 50;
+                let current = 0;
+
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        setTimeout(updateCounter, 30);
+                    } else {
+                        counter.textContent = target + (target > 100 ? '' : '%');
+                    }
+                };
+
+                updateCounter();
+            });
+        }
+
+        // Trigger counter animation when section is in view
+        window.addEventListener('scroll', () => {
+            const section = document.querySelector('.statistik-section');
+            if (section && !section.classList.contains('animated')) {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    section.classList.add('animated');
+                    animateCounters();
+                }
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
