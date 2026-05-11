@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi Akun - PPDB SMK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #003d82 0%, #002d5f 50%, #1a1a2e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 152, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 61, 130, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            max-width: 550px;
+            width: 100%;
+            overflow: visible;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #003d82 0%, #002d5f 100%);
+            padding: 50px 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 152, 0, 0.1);
+            border-radius: 50%;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .header-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 8px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 0.95em;
+            opacity: 0.95;
+            letter-spacing: 0.5px;
+        }
+
+        .form-content {
+            padding: 45px 35px;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+        .form-group:nth-child(6) { animation-delay: 0.6s; }
+        .form-group:nth-child(7) { animation-delay: 0.7s; }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #003d82;
+            font-weight: 700;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        label i {
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #ff9800;
+            box-shadow: 0 0 0 4px rgba(255, 152, 0, 0.15);
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #003d82;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        input[type="text"]:focus ~ .input-icon,
+        input[type="email"]:focus ~ .input-icon,
+        input[type="password"]:focus ~ .input-icon {
+            color: #ff9800;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .required {
+            color: #ff6b6b;
+            font-size: 1.2em;
+        }
+
+        .password-strength {
+            margin-top: 12px;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: all 0.4s ease;
+            background: linear-gradient(90deg, #ff6b6b, #ff6b6b);
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+        }
+
+        .password-strength-bar.medium {
+            width: 50%;
+            background: linear-gradient(90deg, #ffc107, #ffc107);
+            box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+        }
+
+        .password-strength-bar.strong {
+            width: 100%;
+            background: linear-gradient(90deg, #28a745, #28a745);
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+        }
+
+        .password-requirements {
+            margin-top: 15px;
+            font-size: 0.85em;
+            color: #666;
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ff9800;
+        }
+
+        .requirement {
+            margin: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .requirement::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .requirement.met {
+            color: #28a745;
+        }
+
+        .requirement.met::before {
+            content: "✓";
+            color: #28a745;
+        }
+
+        .form-actions {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.05em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+        }
+
+        .btn-register:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 152, 0, 0.5);
+        }
+
+        .btn-register:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-register:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.95em;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #003d82;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .login-link a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff9800;
+            transition: width 0.3s ease;
+        }
+
+        .login-link a:hover::after {
+            width: 100%;
+        }
+
+        .success-message,
+        .error-message {
+            display: none;
+            padding: 16px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid;
+            font-weight: 600;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .terms-checkbox:hover {
+            border-color: #ff9800;
+            background: rgba(255, 152, 0, 0.05);
+        }
+
+        .terms-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #003d82;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .terms-checkbox label {
+            margin-bottom: 0;
+            font-weight: normal;
+            color: #333;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .terms-checkbox a {
+            color: #003d82;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .terms-checkbox a:hover {
+            color: #ff9800;
+            text-decoration: underline;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(0, 61, 130, 0.1) 0%, rgba(255, 152, 0, 0.05) 100%);
+            border-left: 4px solid #003d82;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 0.9em;
+            color: #444;
+        }
+
+        .info-box strong {
+            color: #003d82;
+        }
+
+        @media (max-width: 600px) {
+            .form-content {
+                padding: 30px 20px;
+            }
+
+            .header {
+                padding: 35px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header-icon {
+                font-size: 2.5em;
+            }
+
+            label {
+                font-size: 0.9em;
+            }
+
+            button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+        }
+
+        .divider {
+            text-align: center;
+            margin: 30px 0 20px;
+            position: relative;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header">
+                <div class="header-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h1>Registrasi Akun Siswa</h1>
+                <p>Silahkan Bergabung Dengan Kami</p>
+            </div>
+
+            <div class="form-content">
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <strong> Info:</strong> Isi semua data dengan benar dan akurat untuk proses pendaftaran yang lancar.
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i> Registrasi berhasil! Silahkan login dengan akun Anda.
+                </div>
+                <div class="error-message" id="errorMessage">
+                    <i class="fas fa-exclamation-circle"></i> Terjadi kesalahan, silahkan coba lagi!
+                </div>
+
+                <form id="formRegistrasi">
+                    <!-- Nama Lengkap -->
+                    <div class="form-group">
+                        <label for="namaLengkap">
+                            <i class="fas fa-user"></i>
+                            Nama Lengkap <span class="required">*</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="namaLengkap" name="namaLengkap" placeholder="Contoh: Ahmad Rizki Pratama" required>
+                            <i class="fas fa-user input-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i>
+                            Email <span class="required">*</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="email" id="email" name="email" placeholder="Contoh: ahmad@gmail.com" required>
+                            <i class="fas fa-envelope input-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Username -->
+                    <div class="form-group">
+                        <label for="username">
+                            <i class="fas fa-at"></i>
+                            Username <span class="required">*</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="username" name="username" placeholder="4-20 karakter (huruf, angka, underscore)" minlength="4" maxlength="20" required>
+                            <i class="fas fa-at input-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i>
+                            Password <span class="required">*</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="password" id="password" name="password" placeholder="Buat password yang kuat" required>
+                            <i class="fas fa-lock input-icon"></i>
+                        </div>
+                        <div class="password-strength">
+                            <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                        </div>
+                        <div class="password-requirements">
+                            <div class="requirement" id="req-length">
+                                <i class="fas fa-check"></i> Minimal 8 karakter
+                            </div>
+                            <div class="requirement" id="req-upper">
+                                <i class="fas fa-check"></i> Minimal 1 huruf besar (A-Z)
+                            </div>
+                            <div class="requirement" id="req-lower">
+                                <i class="fas fa-check"></i> Minimal 1 huruf kecil (a-z)
+                            </div>
+                            <div class="requirement" id="req-number">
+                                <i class="fas fa-check"></i> Minimal 1 angka (0-9)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Konfirmasi Password -->
+                    <div class="form-group">
+                        <label for="passwordConfirm">
+                            <i class="fas fa-lock"></i>
+                            Konfirmasi Password <span class="required">*</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Ulangi password Anda" required>
+                            <i class="fas fa-lock input-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Persetujuan Syarat dan Ketentuan -->
+                    <div class="form-group">
+                        <div class="terms-checkbox">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">
+                                Saya setuju dengan <a href="#" onclick="event.preventDefault();">Syarat dan Ketentuan</a> serta <a href="#" onclick="event.preventDefault();">Kebijakan Privasi</a>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Tombol Registrasi -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-register">
+                            <i class="fas fa-user-plus"></i> Daftar Sekarang
+                        </button>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="divider">atau</div>
+
+                    <!-- Link Login -->
+                    <div class="login-link">
+                        <i class="fas fa-sign-in-alt"></i> Sudah punya akun? <a href="index.php">Masuk di sini</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('formRegistrasi');
+        const passwordInput = document.getElementById('password');
+        const passwordConfirmInput = document.getElementById('passwordConfirm');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Validasi kekuatan password
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            const strengthBar = document.getElementById('passwordStrengthBar');
+            
+            // Check requirements
+            const hasLength = password.length >= 8;
+            const hasUpper = /[A-Z]/.test(password);
+            const hasLower = /[a-z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+
+            // Update requirement indicators
+            updateRequirement('req-length', hasLength);
+            updateRequirement('req-upper', hasUpper);
+            updateRequirement('req-lower', hasLower);
+            updateRequirement('req-number', hasNumber);
+
+            // Calculate strength
+            let strength = 0;
+            if (hasLength) strength++;
+            if (hasUpper) strength++;
+            if (hasLower) strength++;
+            if (hasNumber) strength++;
+
+            // Update strength bar
+            strengthBar.className = 'password-strength-bar';
+            if (strength === 2) {
+                strengthBar.classList.add('medium');
+            } else if (strength >= 3) {
+                strengthBar.classList.add('strong');
+            }
+        });
+
+        function updateRequirement(id, met) {
+            const element = document.getElementById(id);
+            if (met) {
+                element.classList.add('met');
+            } else {
+                element.classList.remove('met');
+            }
+        }
+
+        // Validasi form
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nama = document.getElementById('namaLengkap').value;
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('passwordConfirm').value;
+            const terms = document.getElementById('terms').checked;
+
+            // Validasi password match
+            if (password !== passwordConfirm) {
+                errorMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> Password tidak sama!';
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+                return;
+            }
+
+            // Validasi syarat dan ketentuan
+            if (!terms) {
+                errorMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> Anda harus menyetujui syarat dan ketentuan!';
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+                return;
+            }
+
+            // Validasi password strength
+            const hasLength = password.length >= 8;
+            const hasUpper = /[A-Z]/.test(password);
+            const hasLower = /[a-z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+
+            if (!hasLength || !hasUpper || !hasLower || !hasNumber) {
+                errorMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> Password tidak memenuhi kriteria keamanan!';
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+                return;
+            }
+
+            // Simulasi registrasi berhasil
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+
+            // Data registrasi
+            const userData = {
+                nama: nama,
+                email: email,
+                username: username,
+                timestamp: new Date()
+            };
+
+            console.log('Data Registrasi:', userData);
+
+            // Reset form setelah 2 detik
+            setTimeout(() => {
+                form.reset();
+                document.querySelectorAll('.password-strength-bar').forEach(bar => {
+                    bar.className = 'password-strength-bar';
+                });
+                document.querySelectorAll('.requirement').forEach(req => {
+                    req.classList.remove('met');
+                });
+                successMessage.style.display = 'none';
+            }, 2000);
+        });
+
+        // Format email validation
+        document.getElementById('email').addEventListener('blur', function() {
+            const email = this.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email && !emailRegex.test(email)) {
+                errorMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> Format email tidak valid!';
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+
+        // Username validation (alphanumeric dan underscore)
+        document.getElementById('username').addEventListener('input', function() {
+            this.value = this.value.replace(/[^a-zA-Z0-9_]/g, '');
+        });
+    </script>
+</body>
+</html>
